@@ -40,7 +40,7 @@ function renderCalculations(calculationData) {
     let recentResult = document.getElementById('recentResult');
     let resultHistory = document.getElementById('resultHistory');
      
-    // loop through the books to display them
+    // loop through the array to display them
     for (let calculation of calculationData) {
     //logging how data is looping
     console.log(calculation);
