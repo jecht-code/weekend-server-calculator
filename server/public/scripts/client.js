@@ -58,3 +58,45 @@ function renderCalculations(calculationData) {
     <p>${calculationData[calculationData.length - 1].result}</p>`;
     }
 }
+
+function submitCalculation(event) {
+    event.preventDefault();
+    console.log('This is my operator', operator);
+
+    let newCalculation = {
+        numOne: firstNumber.value,
+        numTwo: secondNumber.value,
+        operator: operator,
+    }
+    axios({
+        method: 'POST',
+        url: '/calculations',
+        data: newCalculation,
+    })
+    .then((response) => {
+        
+        // empty the output element for recent results
+        let recentResult = document.getElementById('recentResult');
+        recentResult.innerHTML = '';
+        //clear DOM to not double history
+        let resultHistory = document.getElementById('resultHistory');
+        resultHistory.innerHTML = '';
+
+        // GET new calculation
+        getCalculations();
+    })
+    .catch((error) => {
+        console.error('ERROR:', error);
+    });
+}
+
+function clearInputs(event) {
+    event.preventDefault();
+    let firstNumber = document.querySelector('#firstNumber');
+    let secondNumber = document.querySelector('#secondNumber');
+    console.log(firstNumber);
+    console.log(secondNumber);
+     //clear fields
+     firstNumber.value = '';
+     secondNumber.value = '';
+}
