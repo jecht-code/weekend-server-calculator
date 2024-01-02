@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-let PORT = process.env.PORT || 5000;
+let PORT = process.env.PORT || 5001;
 
 app.use(express.json());
 app.use(express.static('server/public'));
@@ -13,9 +13,30 @@ let calculations = []
 // Here's a wonderful place to make some routes:
 
 // GET /calculations
+app.get('/calculations', function (req, res) {
+  res.send(calculations);
+})
 
 // POST /calculations
+app.post('/calculations', (req, res) => {
+  //store data
+  let dataContainer = req.body;
+  //consolelog the container.
+  console.log(dataContainer);
+  let numOne = dataContainer.numOne;
+  let numTwo = dataContainer.numTwo;
+  let operator = dataContainer.operator;
 
+  //verify these data
+  console.log(numOne, numTwo, operator);
+
+  //perform caluclations
+
+  //Add data to list existing list
+  calculations.push(newCalculation);
+  //do magic
+  res.sendStatus(201);
+})
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
 // 🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸
