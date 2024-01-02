@@ -1,10 +1,10 @@
 console.log('client.js is sourced!');
 let operator;
 
-function setOperator(event){
-    event.preventDefault();
+function setOperator(text){
+    //event.preventDefault();
     // console.log(event);
-    operator = event.target.firstChild.data;
+    operator = text;
     console.log('Grab for my newCalculation', operator);
 }
 
@@ -37,8 +37,8 @@ function getCalculations() {
 function renderCalculations(calculationData) {
     console.log('rendering calculations to the DOM', calculationData);
       
-    let recentResult = document.getElementById('recentResult');
-    let resultHistory = document.getElementById('resultHistory');
+    let recentResult = document.querySelector('[data-testid="recentResult"]');
+    let resultHistory = document.querySelector('[data-testid="resultHistory"]');
      
     // loop through the array to display them
     for (let calculation of calculationData) {
@@ -76,10 +76,10 @@ function submitCalculation(event) {
     .then((response) => {
         
         // empty the output element for recent results
-        let recentResult = document.getElementById('recentResult');
+        let recentResult = document.querySelector('[data-testid="recentResult"]');
         recentResult.innerHTML = '';
         //clear DOM to not double history
-        let resultHistory = document.getElementById('resultHistory');
+        let resultHistory = document.querySelector('[data-testid="resultHistory"]');
         resultHistory.innerHTML = '';
 
         // GET new calculation
