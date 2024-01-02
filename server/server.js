@@ -31,12 +31,39 @@ app.post('/calculations', (req, res) => {
   console.log(numOne, numTwo, operator);
 
   //perform caluclations
+  let result = calculateResults(Number(numOne), Number(numTwo), operator);
+
+  //create object to push.
+  let newCalculation = {
+    numOne,
+    numTwo,
+    operator,
+    result,
+  };
 
   //Add data to list existing list
   calculations.push(newCalculation);
+
   //do magic
   res.sendStatus(201);
 })
+
+//create function to calulcate the calculator.
+function calculateResults (numOne, numTwo, operator) {
+  //addition
+  if (operator === '+') {
+    return numOne + numTwo;
+    //subtract
+  } else if (operator === '-') {
+    return numOne - numTwo;
+    //multiply
+  } else if (operator === '*') {
+    return numOne * numTwo;
+    //divide
+  } else if (operator === '/') {
+    return numOne / numTwo
+  }
+}
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
 // 🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸  🐻  🐻‍❄️  🧸
